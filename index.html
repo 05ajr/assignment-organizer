@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment Organizer</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <div>
+        <p class="eyebrow">STUDENT PLANNER</p>
+        <h1>Assignment Organizer</h1>
+        <p class="subtitle">One place to keep your classes and due dates straight.</p>
+      </div>
+    </header>
+
+    <section class="overview" aria-label="Assignment overview">
+      <div class="stat"><span>Total assignments</span><strong id="totalCount">0</strong></div>
+      <div class="stat"><span>Due in the next 7 days</span><strong id="soonCount">0</strong></div>
+      <div class="stat"><span>Completed</span><strong id="completedCount">0</strong></div>
+      <div class="stat progress-stat">
+        <div class="progress-head"><span>Overall progress</span><strong id="progressText">0%</strong></div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+    </section>
+
+    <section class="panel calendar" aria-labelledby="calendarTitle">
+      <div class="calendar-heading">
+        <div>
+          <h2 id="calendarTitle">Assignment calendar</h2>
+          <p class="section-note">Select a day to see what's due.</p>
+        </div>
+        <div class="calendar-controls">
+          <button type="button" id="prevMonth" aria-label="Previous month">&larr;</button>
+          <h3 id="calendarMonth" aria-live="polite"></h3>
+          <button type="button" id="nextMonth" aria-label="Next month">&rarr;</button>
+          <button type="button" id="todayButton">Today</button>
+        </div>
+      </div>
+      <div class="calendar-weekdays" aria-hidden="true">
+        <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+      </div>
+      <div id="calendarGrid" class="calendar-grid" aria-label="Calendar days"></div>
+      <div class="calendar-details">
+        <div>
+          <h3 id="selectedDayTitle">Select a date</h3>
+          <div id="selectedDayList" aria-live="polite"></div>
+        </div>
+        <button type="button" id="addOnDay" class="outline-button" hidden>Add assignment for this day</button>
+      </div>
+    </section>
+
+    <div class="layout">
+      <section class="panel editor" aria-labelledby="formTitle">
+        <h2 id="formTitle">New assignment</h2>
+        <p class="section-note">Add something you need to get done.</p>
+        <form id="assignmentForm">
+          <label for="title">Assignment name</label>
+          <input type="text" id="title" maxlength="90" placeholder="Homework 4" required>
+          <label for="course">Class</label>
+          <input type="text" id="course" maxlength="50" placeholder="CMSC 132" required>
+          <div class="fields">
+            <div>
+              <label for="dueDate">Due date</label>
+              <input type="date" id="dueDate" required>
+            </div>
+            <div>
+              <label for="priority">Priority</label>
+              <select id="priority">
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+                <option value="high">High</option>
+              </select>
+            </div>
+          </div>
+          <button id="saveButton" class="primary-button" type="submit">Add assignment</button>
+          <button id="cancelButton" class="cancel-button" type="button" hidden>Cancel editing</button>
+        </form>
+      </section>
+
+      <section class="panel assignments" aria-labelledby="listTitle">
+        <div class="list-heading">
+          <div>
+            <h2 id="listTitle">Your assignments</h2>
+            <p class="section-note" id="resultsCount">0 assignments</p>
+          </div>
+          <label class="search-label" for="search">
+            <span class="visually-hidden">Search assignments</span>
+            <input type="search" id="search" placeholder="Search assignments">
+          </label>
+        </div>
+        <div class="tabs" role="group" aria-label="Filter assignments">
+          <button type="button" data-filter="all" class="selected">All</button>
+          <button type="button" data-filter="upcoming">Upcoming</button>
+          <button type="button" data-filter="overdue">Overdue</button>
+          <button type="button" data-filter="completed">Completed</button>
+        </div>
+        <div id="assignmentList" class="assignment-list" aria-live="polite"></div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
